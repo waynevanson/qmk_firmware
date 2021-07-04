@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           _______,    KC_Q,    KC_S,    KC_H,     KC_T,      KC_G, _______,           _______,    KC_Y,     KC_N,    KC_E,    KC_O, _______,   _______,
         KC_LSHIFT,    KC_A,    KC_X,    KC_M,     KC_C,      KC_X,                                KC_K,     KC_L, _______, _______,    KC_I, KC_RSHIFT,
          KC_LCTRL,    KC_Z, _______, _______,  _______,            _______,           _______,           _______, _______, _______, _______,  KC_RCTRL,
-                                              KC_SPACE, KC_BSPACE, _______,           _______, TOGGLE_LAYER_COLOR, KC_ENTER
+                                              KC_SPACE, KC_BSPACE, _______,           _______, RGB_MOD, KC_ENTER
     ),
 
     [SYMB] = LAYOUT_moonlander(
