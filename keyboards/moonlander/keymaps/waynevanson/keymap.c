@@ -29,7 +29,7 @@ enum layers {
 };
 
 enum custom_keycodes {
-    VRSN = ML_SAFE_RANGE,
+    HOLD = ML_SAFE_RANGE    // Holds the modifers instead of releasing them on click
 };
 
 // clang-format off
