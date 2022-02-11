@@ -25,6 +25,7 @@ enum layers {
     MDIA,  // media keys
 };
 
+// CTRL, SHIFT, ALT, GUI
 enum custom_keycodes {
     VRSN = ML_SAFE_RANGE,
 };
@@ -33,10 +34,10 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         _______,    _______,    _______,    _______,    _______,    _______,    _______,                _______,    _______,    _______,    _______,    _______,    _______,    _______,
-        KC_GRAVE,    _______,    KC_D,       KC_R,       KC_W,       KC_B,       _______,                _______,    KC_J,       KC_F,       KC_U,       KC_P,       KC_LBRC,    KC_RBRC,
+        KC_GRAVE,   _______,    KC_D,       KC_R,       KC_W,       KC_B,       _______,                _______,    KC_J,       KC_F,       KC_U,       KC_P,       KC_LBRC,    KC_RBRC,
         _______,    KC_Q,       KC_S,       KC_H,       KC_T,       KC_G,       _______,                _______,    KC_Y,       KC_N,       KC_E,       KC_O,       KC_SCLN,    KC_BSLS,
-        KC_LSFT,    KC_A,       KC_X,       KC_M,       KC_C,       KC_V,                                           KC_K,       KC_L,       KC_COMM,    KC_DOT,     KC_I,       KC_RSFT,
-        KC_LCTL,    KC_Z,       _______,    _______,    _______,                _______,                _______,                _______,    _______,    _______,    KC_SLSH,    KC_RCTL,
+        _______,    KC_A,       KC_X,       KC_M,       KC_C,       KC_V,                                           KC_K,       KC_L,       KC_COMM,    KC_DOT,     KC_I,       OSM(MOD_RSFT),
+        OSM(MOD_LCTL),    KC_Z, _______,    _______,    _______,                _______,                _______,                _______,    _______,    _______,    KC_SLSH,    _______,
                                                         KC_SPC,    KC_BSPC,     KC_LGUI,                KC_RALT,    KC_TAB,    KC_ENT
     ),
 
