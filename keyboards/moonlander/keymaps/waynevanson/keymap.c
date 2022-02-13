@@ -23,6 +23,7 @@ enum layers {
     BASE,  // default layer
     SYMB,  // symbols
     MDIA,  // media keys
+    SWAG
 };
 
 // CTRL, SHIFT, ALT, GUI
@@ -33,12 +34,12 @@ enum custom_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        _______,    _______,    _______,    _______,    _______,    _______,    _______,                _______,    _______,    _______,    _______,    _______,    _______,    _______,
-        KC_GRAVE,   _______,    KC_D,       KC_R,       KC_W,       KC_B,       _______,                _______,    KC_J,       KC_F,       KC_U,       KC_P,       KC_LBRC,    KC_RBRC,
-        _______,    KC_Q,       KC_S,       KC_H,       KC_T,       KC_G,       _______,                _______,    KC_Y,       KC_N,       KC_E,       KC_O,       KC_SCLN,    KC_BSLS,
-        _______,    KC_A,       KC_X,       KC_M,       KC_C,       KC_V,                                           KC_K,       KC_L,       KC_COMM,    KC_DOT,     KC_I,       OSM(MOD_RSFT),
-        OSM(MOD_LCTL),    KC_Z, _______,    _______,    _______,                _______,                _______,                _______,    _______,    _______,    KC_SLSH,    _______,
-                                                        KC_SPC,    KC_BSPC,     KC_LGUI,                KC_RALT,    KC_TAB,    KC_ENT
+        KC_NO,          KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,                      KC_NO,      KC_NO,  KC_NO,  KC_NO,      KC_NO,  KC_NO,      KC_NO,
+        KC_NO,       KC_NO,  KC_D,   KC_R,   KC_W,   KC_B,   KC_NO,                      KC_NO,      KC_J,   KC_F,   KC_U,       KC_P,   KC_LBRC,    KC_RBRC,
+        OSM(MOD_LCTL),          KC_Q,   KC_S,   KC_H,   KC_T,   KC_G,   KC_NO,                      KC_NO,      KC_Y,   KC_N,   KC_E,       KC_O,   KC_SCLN,    OSM(MOD_RALT),
+        OSM(MOD_LSFT),          KC_A,   KC_X,   KC_M,   KC_C,   KC_V,                                           KC_K,   KC_L,   KC_COMM,    KC_DOT, KC_I,       OSM(MOD_RGUI),
+        KC_NO,          KC_Z,   KC_NO,  KC_NO,  KC_NO,          KC_NO,                      KC_NO,              KC_NO,  KC_NO,      KC_NO,  KC_SLSH,    KC_NO,
+                                                        KC_SPC, OSL(SYMB),    KC_NO,  KC_NO,  OSL(MDIA), KC_ENT
     ),
 
     // [BASE] = LAYOUT_moonlander(
@@ -51,24 +52,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ),
 
     [SYMB] = LAYOUT_moonlander(
-        VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        RESET,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, _______,           _______, KC_UP,   KC_7,    KC_8,    KC_9,    KC_ASTR, KC_F12,
         _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,  _______,           _______, KC_DOWN, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
         _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                             KC_AMPR, KC_1,    KC_2,    KC_3,    KC_BSLS, _______,
         EEP_RST, _______, _______, _______, _______,          RGB_VAI,           RGB_TOG,          _______, KC_DOT,  KC_0,    KC_EQL,  _______,
-                                            RGB_HUD, RGB_VAD, RGB_HUI, TOGGLE_LAYER_COLOR,_______, _______
+                                            RGB_HUD, _______, _______, TOGGLE_LAYER_COLOR,OSL(SWAG), _______
     ),
 
     [MDIA] = LAYOUT_moonlander(
-        LED_LEVEL,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, RESET,
+        RESET,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, RESET,
         _______, _______, _______, KC_MS_U, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______,           _______, _______, _______, _______, _______, _______, KC_MPLY,
         _______, _______, _______, _______, _______, _______,                             _______, _______, KC_MPRV, KC_MNXT, _______, _______,
         _______, _______, _______, KC_BTN1, KC_BTN2,         _______,            _______,          KC_VOLU, KC_VOLD, KC_MUTE, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
     ),
+
+    [SWAG] = LAYOUT_moonlander(
+        _______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,       _______,KC_Q,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,            _______,    _______,        _______,_______,_______,_______,_______,
+
+                                            _______,_______,_______,            _______,_______,_______
+    )
 };
 
+// todo - if shift + . = !, if shift + , = ?
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
