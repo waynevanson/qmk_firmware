@@ -35,13 +35,15 @@ enum custom_keycodes {
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [BASE] = LAYOUT_moonlander(
-        KC_NO,          KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,                      KC_NO,      KC_NO,  KC_NO,  KC_NO,      KC_NO,  KC_NO,      KC_NO,
-        KC_NO,       KC_NO,  KC_D,   KC_R,   KC_W,   KC_B,   KC_NO,                      KC_NO,      KC_J,   KC_F,   KC_U,       KC_P,   KC_LBRC,    KC_RBRC,
-        OSM(MOD_LCTL),          KC_Q,   KC_S,   KC_H,   KC_T,   KC_G,   KC_NO,                      KC_NO,      KC_Y,   KC_N,   KC_E,       KC_O,   KC_SEMICOLON,    OSM(MOD_RALT),
-        OSM(MOD_LSFT),          KC_A,   KC_X,   KC_M,   KC_C,   KC_V,                                           KC_K,   KC_L,   KC_QCOM,    KC_EDOT, KC_I,       OSM(MOD_RGUI),
-        KC_NO,          KC_Z,   KC_NO,  KC_NO,  KC_NO,          KC_NO,                      KC_NO,              KC_NO,  KC_NO,      KC_NO,  KC_SLSH,    KC_QUOTE,
-                                                        KC_SPC, TT(SYMB_NUM),    KC_NO,  KC_NO,  TT(MDIA), KC_ENT
+    [BASE] = LAYOUT_wayne(
+        KC_Q,   KC_D,   KC_R,   KC_W,   KC_B,               KC_J,   KC_F,   KC_U,       KC_P,       KC_SEMICOLON,
+        KC_A,   KC_S,   KC_H,   KC_T,   KC_G,               KC_Y,   KC_N,   KC_E,       KC_O,       KC_I,
+        KC_Z,   KC_X,   KC_M,   KC_C,   KC_V,               KC_K,   KC_L,   KC_QCOM,    KC_EDOT,    KC_QUOTE,
+
+        OSM(MOD_LCTL),  OSM(MOD_LSFT),
+        KC_SPC,         TT(SYMB_NUM),
+        TT(MDIA),       KC_ENT,
+        OSM(MOD_RGUI),  OSM(MOD_RALT)
     ),
 
     // [BASE] = LAYOUT_moonlander(

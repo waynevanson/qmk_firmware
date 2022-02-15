@@ -24,3 +24,20 @@
 
 #define KC_LEFT_ARROW LSFT(KC_COMMA)
 #define KC_LARW KC_LEFT_ARROW
+
+#define XXX KC_NO
+
+#define LAYOUT_wayne(\
+    K00, K01, K02, K03, K04,        K05, K06, K07, K08, K09,\
+    K10, K11, K12, K13, K14,        K15, K16, K17, K18, K19,\
+    K20, K21, K22, K23, K24,        K25, K26, K27, K28, K29,\
+    K30, K31,      K32, K33,        K34, K35,      K36, K37\
+)\
+LAYOUT_moonlander(\
+    XXX, XXX, XXX, XXX, XXX, XXX, XXX,        XXX, XXX, XXX, XXX, XXX, XXX, XXX,\
+    XXX, XXX, K01, K02, K03, K04, XXX,        XXX, K05, K06, K07, K08, XXX, XXX,\
+    XXX, K00, K11, K12, K13, K14, XXX,        XXX, K15, K16, K17, K18, K09, XXX,\
+    K30, K10, K21, K22, K23, K24,                  K25, K26, K27, K28, K19, K37,\
+    K31, K20, XXX, XXX, XXX,      XXX,        XXX,      XXX, XXX, XXX, K29, K36,\
+                        K32, K33, XXX,        XXX, K34, K35\
+)
