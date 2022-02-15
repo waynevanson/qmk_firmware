@@ -21,14 +21,15 @@
 
 enum layers {
     BASE,  // default layer
-    SYMB,  // symbols
+    SYMB_NUM,  // symbols
     MDIA,  // media keys
     SWAG
 };
 
 // CTRL, SHIFT, ALT, GUI
 enum custom_keycodes {
-    VRSN = ML_SAFE_RANGE,
+    KC_EDOT,
+    KC_QCOM
 };
 
 
@@ -37,10 +38,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         KC_NO,          KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,                      KC_NO,      KC_NO,  KC_NO,  KC_NO,      KC_NO,  KC_NO,      KC_NO,
         KC_NO,       KC_NO,  KC_D,   KC_R,   KC_W,   KC_B,   KC_NO,                      KC_NO,      KC_J,   KC_F,   KC_U,       KC_P,   KC_LBRC,    KC_RBRC,
-        OSM(MOD_LCTL),          KC_Q,   KC_S,   KC_H,   KC_T,   KC_G,   KC_NO,                      KC_NO,      KC_Y,   KC_N,   KC_E,       KC_O,   KC_SCLN,    OSM(MOD_RALT),
-        OSM(MOD_LSFT),          KC_A,   KC_X,   KC_M,   KC_C,   KC_V,                                           KC_K,   KC_L,   KC_COMM,    KC_DOT, KC_I,       OSM(MOD_RGUI),
-        KC_NO,          KC_Z,   KC_NO,  KC_NO,  KC_NO,          KC_NO,                      KC_NO,              KC_NO,  KC_NO,      KC_NO,  KC_SLSH,    KC_NO,
-                                                        KC_SPC, OSL(SYMB),    KC_NO,  KC_NO,  OSL(MDIA), KC_ENT
+        OSM(MOD_LCTL),          KC_Q,   KC_S,   KC_H,   KC_T,   KC_G,   KC_NO,                      KC_NO,      KC_Y,   KC_N,   KC_E,       KC_O,   KC_SEMICOLON,    OSM(MOD_RALT),
+        OSM(MOD_LSFT),          KC_A,   KC_X,   KC_M,   KC_C,   KC_V,                                           KC_K,   KC_L,   KC_QCOM,    KC_EDOT, KC_I,       OSM(MOD_RGUI),
+        KC_NO,          KC_Z,   KC_NO,  KC_NO,  KC_NO,          KC_NO,                      KC_NO,              KC_NO,  KC_NO,      KC_NO,  KC_SLSH,    KC_QUOTE,
+                                                        KC_SPC, TT(SYMB_NUM),    KC_NO,  KC_NO,  TT(MDIA), KC_ENT
     ),
 
     // [BASE] = LAYOUT_moonlander(
@@ -53,44 +54,67 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ),
 
     //  numpad and symbols
-    [SYMB] = LAYOUT_moonlander(
+    [SYMB_NUM] = LAYOUT_moonlander(
         _______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,
-        _______,_______,KC_LARW,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,            _______,    _______,        _______,_______,_______,_______,_______,
-
-                                            _______,OSL(BASE),_______,            _______,OSL(SWAG),_______
+        _______,_______,_______,_______,_______,_______,_______,       _______,_______,KC_7,KC_8,KC_9,_______,_______,
+        _______,_______,KC_LARW,RSFT(KC_9),RSFT(KC_LBRC),KC_LBRC,_______,       _______,_______,KC_4,KC_5,KC_6,_______,_______,
+        _______,_______,RSFT(KC_DOT),RSFT(KC_0),RSFT(KC_RBRC),KC_RBRC,                       _______,KC_1,KC_2,KC_3,KC_0,_______,
+        _______,_______,_______,_______,_______,        _______,       _______,        _______,_______,_______,_______,_______,
+                                        _______,TO(BASE),_______,_______,TT(SWAG),_______
     ),
 
     [MDIA] = LAYOUT_moonlander(
         RESET,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, RESET,
         _______, _______, _______, KC_MS_U, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______,           _______, _______, _______, _______, _______, _______, KC_MPLY,
-        _______, _______, _______, _______, _______, _______,                             _______, _______, KC_MPRV, KC_MNXT, _______, _______,
+        _______, _______, _______, _______, KC_BSPC, _______,                             _______, _______, KC_MPRV, KC_MNXT, _______, _______,
         _______, _______, _______, KC_BTN1, KC_BTN2,         _______,            _______,          KC_VOLU, KC_VOLD, KC_MUTE, _______, _______,
-                                            _______, _______, _______,           _______, _______, _______
+                                            _______, _______, _______,           _______, TO(BASE), _______
     ),
 
-    [SWAG] =
-    LAYOUT_moonlander(
+    [SWAG] = LAYOUT_moonlander(
         _______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,KC_BSPC,_______,                    _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,            _______,    _______,        _______,_______,_______,_______,_______,
 
                                             _______,OSL(BASE),_______,            _______,_______,_______
+    )
 };
-
+uint8_t mod_state;
 // todo - if shift + . = !, if shift + , = ?
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//     // if (record->event.pressed) {
-//     //     switch (keycode) {
-//     //     case VRSN:
-//     //         SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-//     //         return false;
-//     //     }
-//     // }
-//     return true;
-// }
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    mod_state = get_mods() | get_oneshot_mods();
+
+    switch (keycode) {
+        // period, or exclamation mark on shift
+        case KC_EDOT:
+            if (record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    register_code(KC_1);
+                } else {
+                    register_code(KC_DOT);
+                }
+            } else {
+                unregister_code(KC_1);
+                unregister_code(KC_DOT);
+            }
+            break;
+        case KC_QCOM:
+            if (record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    register_code(KC_SLSH);
+                } else {
+                    register_code(KC_COMM);
+                }
+            } else {
+                unregister_code(KC_SLSH);
+                unregister_code(KC_COMM);
+            }
+            break;
+        default:
+            return true;
+    }
+    return true;
+}

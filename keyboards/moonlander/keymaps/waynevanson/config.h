@@ -20,6 +20,7 @@
 
 #define ORYX_CONFIGURATOR
 #define ONESHOT_TAP_TOGGLE 2 /* Tapping this number of times holds the key until tapped once again. */
+#define TAPPING_TOGGLE 1
 
 #define KC_LEFT_ARROW LSFT(KC_COMMA)
 #define KC_LARW KC_LEFT_ARROW
