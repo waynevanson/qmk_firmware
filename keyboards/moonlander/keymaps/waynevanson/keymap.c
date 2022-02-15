@@ -40,10 +40,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_A,   KC_S,   KC_H,   KC_T,   KC_G,               KC_Y,   KC_N,   KC_E,       KC_O,       KC_I,
         KC_Z,   KC_X,   KC_M,   KC_C,   KC_V,               KC_K,   KC_L,   KC_QCOM,    KC_EDOT,    KC_QUOTE,
 
-        OSM(MOD_LCTL),  OSM(MOD_LSFT),
-        KC_SPC,         TT(SYMB_NUM),
-        TT(MDIA),       KC_ENT,
-        OSM(MOD_RGUI),  OSM(MOD_RALT)
+        OSM(MOD_LCTL),  OSM(MOD_LSFT),  KC_SPC, TT(SYMB_NUM),
+        TT(MDIA),       KC_ENT,         OSM(MOD_RGUI),  OSM(MOD_RALT)
     ),
 
     // [BASE] = LAYOUT_moonlander(
@@ -56,13 +54,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ),
 
     //  numpad and symbols
-    [SYMB_NUM] = LAYOUT_moonlander(
-        _______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,       _______,_______,KC_7,KC_8,KC_9,_______,_______,
-        _______,KC_PIPE,KC_LARW,RSFT(KC_9),RSFT(KC_LBRC),KC_LBRC,_______,       _______,_______,KC_4,KC_5,KC_6,_______,_______,
-        _______,KC_AMPERSAND,RSFT(KC_DOT),RSFT(KC_0),RSFT(KC_RBRC),KC_RBRC,                       _______,KC_1,KC_2,KC_3,KC_0,_______,
-        _______,_______,_______,_______,_______,        _______,       _______,        _______,_______,_______,_______,_______,
-                                        _______,TO(BASE),_______,_______,TT(SWAG),_______
+    [SYMB_NUM] = LAYOUT_wayne(
+        XXX,            XXX,            XXX,        XXX,            XXX,                XXX,    KC_7,   KC_8,   KC_9,   XXX,
+        KC_PIPE,        KC_LARW,        RSFT(KC_9), RSFT(KC_LBRC),  KC_LBRC,            XXX,    KC_4,   KC_5,   KC_6,   XXX,
+        KC_AMPERSAND,   RSFT(KC_DOT),   RSFT(KC_0), RSFT(KC_RBRC),  KC_RBRC,            XXX,    KC_1,   KC_2,   KC_3,   KC_0,
+        XXX, XXX, XXX,TO(BASE),
+        XXX,TT(SWAG), XXX,XXX
     ),
 
     [MDIA] = LAYOUT_moonlander(
