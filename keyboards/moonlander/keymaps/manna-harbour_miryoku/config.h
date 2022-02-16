@@ -22,3 +22,5 @@ XXX, K20, K21, K22, K23, K24,               K25, K26, K27, K28, K29, XXX,\
 XXX, XXX, XXX, XXX, K32,      XXX,     XXX,      K37, XXX, XXX, XXX, XXX,\
                     K33, K34, XXX,     XXX, K35, K36\
 )
+
+#define MIRYOKU_ALPHAS_WORKMAN WORKMAN
