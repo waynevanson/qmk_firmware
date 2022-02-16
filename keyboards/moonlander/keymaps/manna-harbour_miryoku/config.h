@@ -16,10 +16,10 @@
 )\
 LAYOUT_moonlander(\
 XXX, XXX, XXX, XXX, XXX, XXX, XXX,     XXX, XXX, XXX, XXX, XXX, XXX, XXX,\
-XXX, K00, K01, K02, K03, K04, XXX,     XXX, K05, K06, K07, K08, K09, XXX,\
-XXX, K10, K11, K12, K13, K14, XXX,     XXX, K15, K16, K17, K18, K19, XXX,\
-XXX, K20, K21, K22, K23, K24,               K25, K26, K27, K28, K29, XXX,\
-XXX, XXX, XXX, XXX, K32,      XXX,     XXX,      K37, XXX, XXX, XXX, XXX,\
+XXX, XXX, K01, K02, K03, K04, XXX,     XXX, K05, K06, K07, K08, XXX, XXX,\
+XXX, K00, K11, K12, K13, K14, XXX,     XXX, K15, K16, K17, K18, K09, XXX,\
+XXX, K10, K21, K22, K23, K24,               K25, K26, K27, K28, K19, XXX,\
+XXX, K20, XXX, XXX, K32,      XXX,     XXX,      K37, XXX, XXX, K29, XXX,\
                     K33, K34, XXX,     XXX, K35, K36\
 )
 
