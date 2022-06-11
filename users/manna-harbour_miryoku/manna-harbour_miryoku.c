@@ -7,6 +7,12 @@
 #include "manna-harbour_miryoku.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  [CUM] = LAYOUT_miryoku(
+    KC_Q,              KC_D,              KC_R,              KC_W,              KC_B,              KC_J,              KC_F,              KC_U,              KC_P,              KC_QUOT,
+    KC_A,              KC_S,              KC_H,              KC_T,              KC_G,              KC_Y,              KC_N,              KC_E,              KC_O,              KC_I,
+    KC_Z,              KC_X,              KC_M,              KC_C,              KC_V,              KC_K,              KC_L,              KC_COMM,           KC_DOT,            KC_SLSH,
+    U_NP,              U_NP,              KC_ESC,            KC_SPC,            KC_TAB,            KC_ENT,            KC_BSPC,           KC_DEL,            U_NP,              U_NP
+  ),
 #if defined MIRYOKU_LAYERS_FLIP
   [BASE] = LAYOUT_miryoku(
   #if defined MIRYOKU_ALPHAS_AZERTY
