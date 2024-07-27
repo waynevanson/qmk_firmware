@@ -23,6 +23,7 @@
 enum charybdis_keymap_layers {
     BASE = 0,
     NMSY,
+    FUNC,
     LAYER_POINTER,
 };
 
@@ -47,20 +48,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
 
-//     // [NUM] = LAYOUT(
-//     //     KC_NO,  KC_LEFT_BRACKET,    KC_7,               KC_8,           KC_9,           KC_RIGHT_BRACKET,
-//     //     KC_NO,  KC_NO,              KC_NO,              KC_NO,          KC_NO,          KC_NO,
-
-//     //     KC_NO,  KC_SEMICOLON,       KC_4,               KC_5,           KC_6,           KC_EQUAL,
-//     //     KC_NO,  KC_RIGHT_SHIFT,     KC_RIGHT_CTRL,      KC_RIGHT_ALT,   KC_RIGHT_GUI,   KC_NO,
-
-//     //     KC_NO,  KC_GRAVE,           KC_1,               KC_2,           KC_3,           KC_BACKSLASH,
-//     //     KC_NO,  KC_NO,              KC_NO,              KC_NO,          KC_NO,          KC_NO,
-
-//     //     // different alignment for thumbs
-//     //     KC_DOT,     KC_0,   KC_MINUS,
-//     //     KC_NO,      KC_NO
-//     // ),
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -72,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
        KC_LSFT, KC_Z,           KC_X,           KC_M,           KC_C,           KC_V,       KC_K,   KC_L,           KC_COMM,        KC_DOT,         KC_QUOTE,       KC_RSFT,
   // ╰──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────╯
-                                                KC_ESC,         KC_SPC,         KC_TAB,     LT(NMSY, KC_ENT), KC_BSPC 
+                                                KC_ESC,         KC_SPC,         KC_TAB,     LT(NMSY, KC_ENT), LT(FUNC, KC_BSPC)
   //                                          ╰─────────────────────────────────────────╯ ╰───────────────────────────╯
   ),
 
@@ -85,6 +72,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,  KC_GRAVE,       KC_1,           KC_2,           KC_3,           KC_BSLS,    KC_NO,  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
   // ╰──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────╯
                                                 KC_DOT,         KC_0,           KC_MINS,    KC_NO,  KC_NO
+  //                                          ╰─────────────────────────────────────────╯ ╰───────────────────────────╯
+  ),
+
+  [FUNC] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────────────────────────────────╮
+        KC_NO,  KC_F12,             KC_F7,              KC_F8,  KC_F9,  KC_PRINT_SCREEN,KC_NO,  KC_NO,              KC_NO,              KC_NO,  KC_NO,  KC_NO,
+  // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
+        KC_NO,  KC_F11,             KC_F4,              KC_F5,          KC_F6, KC_SCROLL_LOCK,KC_NO,  KC_RIGHT_SHIFT, KC_RIGHT_CTRL,  KC_RIGHT_ALT,   KC_RIGHT_GUI, KC_NO,
+  // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
+        KC_NO, KC_F11, KC_F1, KC_F2, KC_F3, KC_PAUSE, KC_NO,  KC_NO,              KC_NO,              KC_NO,  KC_NO,  KC_NO,
+  // ╰──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────╯
+        KC_MENU, KC_SPACE, KC_TAB, KC_NO, KC_NO
   //                                          ╰─────────────────────────────────────────╯ ╰───────────────────────────╯
   )
 
