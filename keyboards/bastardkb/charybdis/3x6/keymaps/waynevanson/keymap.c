@@ -22,6 +22,7 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
+    LAYER_NUMBER_SYMBOL,
     LAYER_POINTER,
 };
 
@@ -45,8 +46,21 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
-//         LT(BASE, KC_ESCAPE),    LT(BASE, KC_SPACE),    LT(BASE, KC_TAB),
-//         LT(BASE, KC_ENTER),     LT(NUM, KC_BACKSPACE)
+
+//     // [NUM] = LAYOUT(
+//     //     KC_NO,  KC_LEFT_BRACKET,    KC_7,               KC_8,           KC_9,           KC_RIGHT_BRACKET,
+//     //     KC_NO,  KC_NO,              KC_NO,              KC_NO,          KC_NO,          KC_NO,
+
+//     //     KC_NO,  KC_SEMICOLON,       KC_4,               KC_5,           KC_6,           KC_EQUAL,
+//     //     KC_NO,  KC_RIGHT_SHIFT,     KC_RIGHT_CTRL,      KC_RIGHT_ALT,   KC_RIGHT_GUI,   KC_NO,
+
+//     //     KC_NO,  KC_GRAVE,           KC_1,               KC_2,           KC_3,           KC_BACKSLASH,
+//     //     KC_NO,  KC_NO,              KC_NO,              KC_NO,          KC_NO,          KC_NO,
+
+//     //     // different alignment for thumbs
+//     //     KC_DOT,     KC_0,   KC_MINUS,
+//     //     KC_NO,      KC_NO
+//     // ),
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -58,33 +72,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
        KC_LSFT, KC_Z,           KC_X,           KC_M,           KC_C,           KC_V,       KC_K,   KC_L,           KC_COMM,        KC_DOT,         KC_QUOTE,       KC_RSFT,
   // ╰──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────╯
-                                                KC_ESC,         KC_SPC,         KC_TAB,     KC_ENT, KC_BACKSPACE 
-  //                                          ╰─────────────────────────────────────────╯ ╰──────────────────────╯
+                                                KC_ESC,         KC_SPC,         KC_TAB,     KC_ENT, KC_BSPC 
+  //                                          ╰─────────────────────────────────────────╯ ╰─────────────────╯
   ),
 
-//   [LAYER_LOWER] = LAYOUT(
-//   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-//        XXXXXXX, RGB_TOG, KC_MNXT, KC_MPLY, KC_MPRV, XXXXXXX,    KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC, XXXXXXX,
-//   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-//        XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,    KC_PPLS,    KC_4,    KC_5,    KC_6, KC_PMNS, XXXXXXX,
-//   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-//        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, EE_CLR,  QK_BOOT,    KC_PAST,    KC_1,    KC_2,    KC_3, KC_PSLS, XXXXXXX,
-//   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-//                                   XXXXXXX, XXXXXXX, _______,    XXXXXXX, _______
-//   //                            ╰───────────────────────────╯ ╰──────────────────╯
-//   ),
-
-//   [LAYER_RAISE] = LAYOUT(
-//   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-//        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_VOLU, KC_MUTE, KC_VOLD, XXXXXXX, XXXXXXX,
-//   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-//        XXXXXXX, KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX,
-//   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-//        XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    QK_BOOT, EE_CLR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-//   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-//                                   _______, _______, XXXXXXX,    _______, XXXXXXX
-//   //                            ╰───────────────────────────╯ ╰──────────────────╯
-//   ),
+  [LAYER_NUMBER_SYMBOL] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────────────────────────────────╮
+        KC_NO,  KC_LBRC,        KC_7,           KC_8,           KC_9,           KC_RBRC,    KC_NO,  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+  // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
+        KC_NO,  KC_SEMICOLON,   KC_4,           KC_5,           KC_6,           KC_EQL,     KC_NO,  KC_RSFT,        KC_RCTL,        KC_RALT,        KC_RGUI,        KC_NO,
+  // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
+        KC_NO,  KC_GRAVE,       KC_1,           KC_2,           KC_3,           KC_BSLS,    KC_NO,  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+  // ╰──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────╯
+                                                KC_DOT,         KC_0,           KC_MINS,    KC_NO,  KC_NO
+  //                                          ╰─────────────────────────────────────────╯ ╰─────────────────╯
+  )
 
 //   [LAYER_POINTER] = LAYOUT(
 //   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
