@@ -20,11 +20,21 @@
  */
 #include QMK_KEYBOARD_H
 
+// https://github.com/manna-harbour/miryoku/tree/master/docs/reference
 enum charybdis_keymap_layers {
     BASE = 0,
     NMSY,
     FUNC,
     LAYER_POINTER,
+};
+
+// `>` and `<` can be accessed on other layers.
+enum custom_keycodes {
+    // `.`, or `!` with SHIFT.
+    KC_EDOT,
+
+    // `/`, or `?` with SHIFT.
+    KC_QCOM
 };
 
 /** \brief Automatically enable sniping-mode on the pointer layer. */
@@ -47,8 +57,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
-
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT(
@@ -57,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
        KC_LCTL, LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_H),   LSFT_T(KC_T),   KC_G,       KC_Y,   RSFT_T(KC_N),   RCTL_T(KC_E),   RALT_T(KC_O),   RGUI_T(KC_I),   KC_RCTL,
   // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
-       KC_LSFT, KC_Z,           KC_X,           KC_M,           KC_C,           KC_V,       KC_K,   KC_L,           KC_COMM,        KC_DOT,         KC_QUOTE,       KC_RSFT,
+       KC_LSFT, KC_Z,           KC_X,           KC_M,           KC_C,           KC_V,       KC_K,   KC_L,           KC_QCOM,        KC_EDOT,         KC_QUOTE,       KC_RSFT,
   // ╰──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────╯
                                                 KC_ESC,         KC_SPC,         KC_TAB,     LT(NMSY, KC_ENT), LT(FUNC, KC_BSPC)
   //                                          ╰─────────────────────────────────────────╯ ╰───────────────────────────╯
@@ -141,104 +149,39 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void rgb_matrix_update_pwm_buffers(void);
 #endif
 
+int8_t mod_state;
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    mod_state = get_mods() | get_oneshot_mods();
 
-
-// // Hijacking names from
-// // https://github.com/manna-harbour/miryoku/tree/master/docs/reference
-// // Not sure I need a mouse layer? Or at least it needs to be modified.
-// enum layers {
-//     BASE = 0,  // default layer
-//     NUM,
-//     FUN
-// };
-
-// // CTRL, SHIFT, ALT, GUI
-// enum custom_keycodes {
-//     KC_EDOT,
-//     KC_QCOM
-// };
-
-// //RSFT for right shift on hold
-// const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//     [BASE] = LAYOUT(
-//         KC_NO,  KC_Q,           KC_D,           KC_R,           KC_W,           KC_B,
-//         KC_J,   KC_F,           KC_U,           KC_P,           KC_SEMICOLON,   KC_NO,
-
-//         KC_NO,  LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_H),   LSFT_T(KC_T),   KC_G,
-//         KC_Y,   RSFT_T(KC_N),   RCTL_T(KC_E),   RALT_T(KC_O),   RGUI_T(KC_I),   KC_NO,
-        
-//         KC_NO,  KC_Z,           KC_X,           KC_M,           KC_C,           KC_V,
-//         KC_K,   KC_L,           KC_QCOM,        KC_EDOT,        KC_QUOTE,       KC_NO,
-
-//         // different alignment for thumbs
-//         LT(BASE, KC_ESCAPE),    LT(BASE, KC_SPACE),    LT(BASE, KC_TAB),
-//         LT(BASE, KC_ENTER),     LT(NUM, KC_BACKSPACE)
-//     )
-//     //,
-
-//     // [NUM] = LAYOUT(
-//     //     KC_NO,  KC_LEFT_BRACKET,    KC_7,               KC_8,           KC_9,           KC_RIGHT_BRACKET,
-//     //     KC_NO,  KC_NO,              KC_NO,              KC_NO,          KC_NO,          KC_NO,
-
-//     //     KC_NO,  KC_SEMICOLON,       KC_4,               KC_5,           KC_6,           KC_EQUAL,
-//     //     KC_NO,  KC_RIGHT_SHIFT,     KC_RIGHT_CTRL,      KC_RIGHT_ALT,   KC_RIGHT_GUI,   KC_NO,
-
-//     //     KC_NO,  KC_GRAVE,           KC_1,               KC_2,           KC_3,           KC_BACKSLASH,
-//     //     KC_NO,  KC_NO,              KC_NO,              KC_NO,          KC_NO,          KC_NO,
-
-//     //     // different alignment for thumbs
-//     //     KC_DOT,     KC_0,   KC_MINUS,
-//     //     KC_NO,      KC_NO
-//     // ),
-
-//     // [FUN] = LAYOUT(
-//     //     KC_NO,  KC_F12,             KC_F7,              KC_F8,  KC_F9,  KC_PRINT_SCREEN,
-//     //     KC_NO,  KC_NO,              KC_NO,              KC_NO,  KC_NO,  KC_NO,
-
-//     //     KC_NO,  KC_F11,             KC_F4,              KC_F5,          KC_F6, KC_SCROLL_LOCK,
-//     //     KC_NO,  KC_RIGHT_SHIFT, KC_RIGHT_CTRL,  KC_RIGHT_ALT,   KC_RIGHT_GUI, KC_NO,
-
-//     //     KC_NO, KC_F11, KC_F4, KC_F5, KC_F6, KC_PAUSE,
-//     //     KC_NO,  KC_NO,              KC_NO,              KC_NO,  KC_NO,  KC_NO,
-
-//     //     KC_MENU, KC_SPACE, KC_TAB,
-//     //     KC_NO, KC_NO
-//     // )
-// };
-
-// int8_t mod_state;
-// // todo - if shift + . = !, if shift + , = ?
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//     mod_state = get_mods() | get_oneshot_mods();
-
-//     switch (keycode) {
-//         // period, or exclamation mark on shift
-//         case KC_EDOT:
-//             if (record->event.pressed) {
-//                 if (mod_state & MOD_MASK_SHIFT) {
-//                     register_code(KC_1);
-//                 } else {
-//                     register_code(KC_DOT);
-//                 }
-//             } else {
-//                 unregister_code(KC_1);
-//                 unregister_code(KC_DOT);
-//             }
-//             break;
-//         case KC_QCOM:
-//             if (record->event.pressed) {
-//                 if (mod_state & MOD_MASK_SHIFT) {
-//                     register_code(KC_SLSH);
-//                 } else {
-//                     register_code(KC_COMM);
-//                 }
-//             } else {
-//                 unregister_code(KC_SLSH);
-//                 unregister_code(KC_COMM);
-//             }
-//             break;
-//         default:
-//             return true;
-//     }
-//     return true;
-// }
+    switch (keycode) {
+        // `.`, or `!` with SHIFT.
+        case KC_EDOT:
+            if (record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    register_code(KC_1);
+                } else {
+                    register_code(KC_DOT);
+                }
+            } else {
+                unregister_code(KC_1);
+                unregister_code(KC_DOT);
+            }
+            break;
+        // `/`, or `?` with SHIFT.
+        case KC_QCOM:
+            if (record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    register_code(KC_SLSH);
+                } else {
+                    register_code(KC_COMM);
+                }
+            } else {
+                unregister_code(KC_SLSH);
+                unregister_code(KC_COMM);
+            }
+            break;
+        default:
+            return true;
+    }
+    return true;
+}
