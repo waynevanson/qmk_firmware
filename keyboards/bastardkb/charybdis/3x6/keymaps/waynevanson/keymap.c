@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
        KC_LCTL, LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_H),   LSFT_T(KC_T),   KC_G,       KC_Y,   RSFT_T(KC_N),   RCTL_T(KC_E),   RALT_T(KC_O),   RGUI_T(KC_I),   KC_RCTL,
   // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
-       KC_LSFT, KC_Z,           LT(LAYER_POINTER, KC_X),           KC_M,           KC_C,           KC_V,       KC_K,   KC_L,           KC_QCOM,        KC_EDOT,         KC_QUOTE,       KC_RSFT,
+       KC_LSFT, KC_Z,           KC_X,           KC_M,           KC_C,           KC_V,       KC_K, KC_L,  LT(LAYER_POINTER, KC_QCOM),       KC_EDOT,         KC_QUOTE,       KC_RSFT,
   // ╰──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────╯
                                                 KC_ESC,         KC_SPC,         KC_TAB,     LT(FUNC, KC_ENT), LT(NMSY, KC_BSPC)
   //                                          ╰─────────────────────────────────────────╯ ╰───────────────────────────╯
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, DRGSCRL,_______, SNIPING, EE_CLR,  QK_BOOT,    QK_BOOT, EE_CLR,  SNIPING, _______,DRGSCRL, XXXXXXX,
+       XXXXXXX, DRGSCRL,SNIPING,_______, EE_CLR,  QK_BOOT,    QK_BOOT, EE_CLR, _______, SNIPING, DRGSCRL, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   KC_BTN2, KC_BTN1, KC_BTN3,    KC_BTN3, KC_BTN1
   //                            ╰───────────────────────────╯ ╰──────────────────╯
