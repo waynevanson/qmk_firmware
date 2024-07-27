@@ -22,8 +22,6 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
-    LAYER_LOWER,
-    LAYER_RAISE,
     LAYER_POINTER,
 };
 
@@ -47,27 +45,21 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
-//         KC_NO,  KC_Q,           KC_D,           KC_R,           KC_W,           KC_B,
-//         KC_J,   KC_F,           KC_U,           KC_P,           KC_SEMICOLON,   KC_NO,
-
-//         KC_NO,  LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_H),   LSFT_T(KC_T),   KC_G,
-//         KC_Y,   RSFT_T(KC_N),   RCTL_T(KC_E),   RALT_T(KC_O),   RGUI_T(KC_I),   KC_NO,
-        
-//         KC_NO,  KC_Z,           KC_X,           KC_M,           KC_C,           KC_V,
-//         KC_K,   KC_L,           KC_QCOM,        KC_EDOT,        KC_QUOTE,       KC_NO,
+//         LT(BASE, KC_ESCAPE),    LT(BASE, KC_SPACE),    LT(BASE, KC_TAB),
+//         LT(BASE, KC_ENTER),     LT(NUM, KC_BACKSPACE)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
-  // ╭────────────────────────────────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       KC_LGUI,    KC_Q,            KC_D,           KC_R,           KC_W,       KC_B,       KC_J,    KC_F,    KC_U,    KC_P, KC_SCLN, KC_RGUI,
-  // ├────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_LCTL,    LGUI_T(KC_A),    LALT_T(KC_S),   LCTL_T(KC_H),   LSFT(KC_T), KC_G,       KC_Y,    RSFT_T(KC_J),    RCTL_T(KC_K),    RALT_T(KC_L), RGUI_T(KC_SCLN), KC_RCTL,
-  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  KC_BSPC,  KC_SPC,   LOWER,      RAISE,  KC_ENT
-  //                            ╰───────────────────────────╯ ╰──────────────────╯
+  // ╭──────────────────────────────────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────────────────────────────────╮
+       KC_LGUI, KC_Q,           KC_D,           KC_R,           KC_W,           KC_B,       KC_J,   KC_F,           KC_U,           KC_P,           KC_SCLN,        KC_RGUI,
+  // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
+       KC_LCTL, LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_H),   LSFT_T(KC_T),   KC_G,       KC_Y,   RSFT_T(KC_N),   RCTL_T(KC_E),   RALT_T(KC_O),   RGUI_T(KC_I),   KC_RCTL,
+  // ├──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────┤
+       KC_LSFT, KC_Z,           KC_X,           KC_M,           KC_C,           KC_V,       KC_K,   KC_L,           KC_COMM,        KC_DOT,         KC_QUOTE,       KC_RSFT,
+  // ╰──────────────────────────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────────────────────────╯
+                                                KC_ESC,         KC_SPC,         KC_TAB,     KC_ENT, KC_BACKSPACE 
+  //                                          ╰─────────────────────────────────────────╯ ╰──────────────────────╯
   ),
 
 //   [LAYER_LOWER] = LAYOUT(
