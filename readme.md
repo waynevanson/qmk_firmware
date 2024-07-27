@@ -1,3 +1,27 @@
+# TLDR
+
+Run this script to install locally.
+
+```sh
+git clone git@github.com:waynevanson/qmk_firmware.git ~/code/waynevanson/qmk_firmware
+cd ~/code/waynevanson/qmk_firmware
+git submodule update --init # Important! There would be nothing to compile otherwise.
+```
+
+Assuming you're running Nix, jump into the shell.
+
+```sh
+nix-shell
+```
+
+Now repeat this for each half of the keyboard
+
+```sh
+qmk flash -kb bastardkb/charybdis/3x6/v2/splinky_v3 -km waynevanson
+# Plug in the keyboard via usb-c
+# and double tap reset button
+```
+
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
