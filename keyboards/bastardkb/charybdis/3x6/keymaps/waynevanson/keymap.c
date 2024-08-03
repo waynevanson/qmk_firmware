@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
        KC_K,
        KC_L,
-       LT(LAYER_POINTER, KC_QCOM),
+       LT(LAYER_POINTER, KC_COMM),
        KC_EDOT,
        KC_QUOTE,
        KC_RSFT,
