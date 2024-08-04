@@ -117,8 +117,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_SPC,
        KC_TAB,
 
-       LT(FUNC, KC_ENT),
-       LT(NMSY, KC_BSPC)
+       LT(FUNC, KC_BSPC),
+       LT(NMSY, KC_ENT)
   ),
 
   [NMSY] = LAYOUT(
