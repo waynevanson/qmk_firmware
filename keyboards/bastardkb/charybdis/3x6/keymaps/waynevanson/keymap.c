@@ -26,6 +26,8 @@ enum charybdis_keymap_layers {
     NMSY,
     FUNC,
     LAYER_POINTER,
+    MEDIA,
+    NAV
 };
 
 // `>` and `<` can be accessed on other layers.
