@@ -51,9 +51,9 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
 const custom_shift_key_t custom_shift_keys[] = {
-  {KC_QUES, KC_EXLM}, // Shift ? is !
+  {KC_QUESTION, KC_EXCLAIM}, // Shift ? is !
   {KC_COMM, KC_SCLN}, // Shift , is ;
-  {KC_DOT,  KC_COLN}, // Shift . is :
+  {KC_DOT,  KC_COLN}, // Shift . is :   
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        RCTL_T(KC_T),
        RALT_T(KC_S),
        RGUI_T(KC_N),
-       KC_Q,
+       KC_Q,  
 
        KC_NO,
        KC_G,
@@ -98,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_K,
        KC_QUOT,
 
-       KC_QUES,
+       KC_QUESTION,
        KC_R,
        LT(LAYER_POINTER, KC_M),
        KC_F,
