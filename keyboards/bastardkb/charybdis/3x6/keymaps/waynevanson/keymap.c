@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "features/custom_shift_keys.h"
 
 /**
  * Copyright 2022 Charly Delay <charly@codesink.dev> (@0xcharly)
@@ -18,7 +19,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include QMK_KEYBOARD_H
 
 // https://github.com/manna-harbour/miryoku/tree/master/docs/reference
 enum charybdis_keymap_layers {
@@ -28,15 +28,6 @@ enum charybdis_keymap_layers {
     LAYER_POINTER,
     MEDIA,
     NAV
-};
-
-// `>` and `<` can be accessed on other layers.
-enum custom_keycodes {
-    // `.`, or `!` with SHIFT.
-    KC_EDOT,
-
-    // `/`, or `?` with SHIFT.
-    KC_QCOM
 };
 
 /** \brief Automatically enable sniping-mode on the pointer layer. */
@@ -59,24 +50,26 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
-// TOP_LEFT,
-// TOP_RIGHT, 
-// MID_LEFT,
-// MID_RIGHT,
-// BOT_LEFT,
-// BOT_RIGHT,
-// THUMB_LEFT
-// THUMB_RIGHT
-//
+const custom_shift_key_t custom_shift_keys[] = {
+  {KC_QUES, KC_EXLM}, // Shift ? is !
+  {KC_COMM, KC_SCLN}, // Shift , is ;
+  {KC_DOT,  KC_COLN }, // Shift . is :
+  {KC_QUOT, KC_LPRN }, // Shift ' is (
+  {KC_DQUO,  KC_RPRN }, // Shift " is )
+};
+
+uint8_t NUM_CUSTOM_SHIFT_KEYS =
+    sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT(
-       KC_LGUI,
-       KC_Q,
-       KC_D,
-       KC_R,
-       KC_W,
+       KC_NO,
        KC_B,
+       KC_Y,
+       KC_O,
+       KC_U,
+       KC_QUOTE,
        
        KC_J,
        KC_F,
@@ -109,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_K,
        KC_L,
        LT(LAYER_POINTER, KC_COMM),
-       KC_EDOT,
+       KC_DOT,
        KC_QUOTE,
        KC_RSFT,
 
@@ -117,8 +110,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_SPC,
        KC_TAB,
 
-       LT(FUNC, KC_BSPC),
-       LT(NMSY, KC_ENT)
+       LT(FUNC, KC_ENT),
+       LT(NMSY, KC_BSPC)
   ),
 
   [NMSY] = LAYOUT(
@@ -223,56 +216,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO
   ),
 
-  [LAYER_POINTER] = LAYOUT(
-        XXXXXXX,
-        XXXXXXX,
-        XXXXXXX,
-        XXXXXXX,
-        DPI_MOD,
-        S_D_MOD,
 
-        S_D_MOD,
-        DPI_MOD,
-        XXXXXXX,
-        XXXXXXX,
-        XXXXXXX,
-        XXXXXXX,
-
-        XXXXXXX,
-        KC_LGUI,
-        KC_LALT,
-        KC_LCTL,
-        KC_LSFT,
-        XXXXXXX,
-
-        XXXXXXX,
-        KC_RSFT,
-        KC_RCTL,
-        KC_RALT,
-        KC_RGUI,
-        XXXXXXX,
-
-        XXXXXXX,
-        DRGSCRL,
-        SNIPING,
-        _______,
-        EE_CLR,
-        QK_BOOT,
-
-        QK_BOOT,
-        EE_CLR,
-        _______,
-        SNIPING,
-        DRGSCRL,
-        XXXXXXX,
-
-        KC_BTN2,
-        KC_BTN1,
-        KC_BTN3,
-
-        KC_BTN3,
-        KC_BTN1
-  )
 };
 // clang-format on
 
@@ -315,40 +259,3 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
 #endif
-
-int8_t mod_state;
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    mod_state = get_mods() | get_oneshot_mods();
-
-    switch (keycode) {
-        // `.`, or `!` with SHIFT.
-        case KC_EDOT:
-            if (record->event.pressed) {
-                if (mod_state & MOD_MASK_SHIFT) {
-                    register_code(KC_1);
-                } else {
-                    register_code(KC_DOT);
-                }
-            } else {
-                unregister_code(KC_1);
-                unregister_code(KC_DOT);
-            }
-            break;
-        // `/`, or `?` with SHIFT.
-        case KC_QCOM:
-            if (record->event.pressed) {
-                if (mod_state & MOD_MASK_SHIFT) {
-                    register_code(KC_SLSH);
-                } else {
-                    register_code(KC_COMM);
-                }
-            } else {
-                unregister_code(KC_SLSH);
-                unregister_code(KC_COMM);
-            }
-            break;
-        default:
-            return true;
-    }
-    return true;
-}
