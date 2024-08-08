@@ -215,6 +215,57 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO
   ),
 
+  [NAV] = LAYOUT(
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_HOME,
+    KC_PGUP,
+    KC_PGDN,
+    KC_END,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_LEFT,
+    KC_UP,
+    KC_DOWN,
+    KC_RIGHT,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_MEDIA_PREV_TRACK,
+    KC_AUDIO_VOL_UP,
+    KC_AUDIO_VOL_DOWN,
+    KC_MEDIA_NEXT_TRACK,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_MEDIA_STOP,
+    KC_MEDIA_PLAY_PAUSE
+  ),
+
   [LAYER_POINTER] = LAYOUT(
     KC_NO,
     KC_NO,
