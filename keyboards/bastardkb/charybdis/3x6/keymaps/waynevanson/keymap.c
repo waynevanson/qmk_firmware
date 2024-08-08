@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
        KC_NO,
        LGUI_T(KC_C),
-       LALT_T(KC_I),
+       LALT_T(KC_I),                
        LCTL_T(KC_E),
        LSFT_T(KC_A),
        KC_COMM,
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_NO,
 
        KC_ESC,
-       KC_SPC,
+       LT(NAV, KC_SPC),
        KC_TAB,
 
        LT(FUNC, KC_ENT),
