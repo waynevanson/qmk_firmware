@@ -53,9 +53,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 const custom_shift_key_t custom_shift_keys[] = {
   {KC_QUES, KC_EXLM}, // Shift ? is !
   {KC_COMM, KC_SCLN}, // Shift , is ;
-  {KC_DOT,  KC_COLN }, // Shift . is :
-  {KC_QUOT, KC_LPRN }, // Shift ' is (
-  {KC_DQUO,  KC_RPRN }, // Shift " is )
+  {KC_DOT,  KC_COLN}, // Shift . is :
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -63,48 +61,49 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS =
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  // Engram layout (mostly) for letters (https://engram.dev/)
   [BASE] = LAYOUT(
        KC_NO,
        KC_B,
        KC_Y,
        KC_O,
        KC_U,
-       KC_QUOTE,
-       
-       KC_J,
-       KC_F,
-       KC_U,
-       KC_P,
-       KC_SCLN,
-       KC_RGUI,
-
-       KC_LCTL,
-       LGUI_T(KC_A),
-       LALT_T(KC_S),
-       LCTL_T(KC_H),
-       LSFT_T(KC_T),
-       KC_G,
-
-       KC_Y,
-       RSFT_T(KC_N),
-       RCTL_T(KC_E),
-       RALT_T(KC_O),
-       RGUI_T(KC_I),
-       KC_RCTL,
-
-       KC_LSFT,
        KC_Z,
-       KC_X,
-       KC_M,
-       KC_C,
-       KC_V,
-
-       KC_K,
+       
+       KC_Q,
        KC_L,
-       LT(LAYER_POINTER, KC_COMM),
+       KC_D,
+       KC_W,
+       KC_V,
+       KC_Z,
+
+       KC_NO,
+       LGUI_T(KC_C),
+       LALT_T(KC_I),
+       LCTL_T(KC_E),
+       LSFT_T(KC_A),
+       KC_COMM,
+
        KC_DOT,
-       KC_QUOTE,
-       KC_RSFT,
+       RSFT_T(KC_H),
+       RCTL_T(KC_T),
+       RALT_T(KC_S),
+       RGUI_T(KC_N),
+       KC_Q,
+
+       KC_NO,
+       KC_G,
+       KC_X,
+       KC_J,
+       KC_K,
+       KC_QUOT,
+
+       KC_QUES,
+       KC_R,
+       LT(LAYER_POINTER, KC_M),
+       KC_F,
+       KC_P,
+       KC_NO,
 
        KC_ESC,
        KC_SPC,
