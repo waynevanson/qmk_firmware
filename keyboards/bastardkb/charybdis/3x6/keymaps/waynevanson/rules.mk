@@ -1,2 +1,4 @@
-VIA_ENABLE = n
+VIA_ENABLE = no
+POINTING_DEVICE_ENABLE = yes
+CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE = yes
 SRC += features/custom_shift_keys.c

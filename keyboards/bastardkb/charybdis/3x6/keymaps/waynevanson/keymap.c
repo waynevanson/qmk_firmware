@@ -1,7 +1,3 @@
-#include QMK_KEYBOARD_H
-#include "version.h"
-#include "features/custom_shift_keys.h"
-
 /**
  * Copyright 2022 Charly Delay <charly@codesink.dev> (@0xcharly)
  * Copyright 2024 Wayne Van Son <waynevanson@gmail.com> (@waynevanson)
@@ -19,6 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include QMK_KEYBOARD_H
+#include "version.h"
+#include "features/custom_shift_keys.h"
 
 // https://github.com/manna-harbour/miryoku/tree/master/docs/reference
 enum charybdis_keymap_layers {
@@ -30,25 +29,12 @@ enum charybdis_keymap_layers {
     NAV
 };
 
-/** \brief Automatically enable sniping-mode on the pointer layer. */
-#define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
-
-#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-static uint16_t auto_pointer_layer_timer = 0;
-
-#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
-#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS 1000
-#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
-
-#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
-#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD 8
-#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
-#endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-
 const custom_shift_key_t custom_shift_keys[] = {
   {KC_QUESTION, KC_EXCLAIM}, // Shift ? is !
   {KC_COMM, KC_SCLN}, // Shift , is ;
   {KC_DOT,  KC_COLN}, // Shift . is :   
+  {KC_SLSH, KC_BSLS}, // Shift / is "\"
+  {KC_BSPC, KC_DEL}, // Shift backspace is delete
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -142,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_1,
         KC_2,
         KC_3,
-        KC_BSLS,
+        KC_SLSH,
 
         KC_NO,
         KC_NO,
@@ -319,6 +305,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
   return true;
 }
+
+/** \brief Automatically enable sniping-mode on the pointer layer. */
+#define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
+
+#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+static uint16_t auto_pointer_layer_timer = 0;
+
+#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
+#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS 1000
+#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
+
+#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
+#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD 8
+#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
+#endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
 #ifdef POINTING_DEVICE_ENABLE
 #    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
