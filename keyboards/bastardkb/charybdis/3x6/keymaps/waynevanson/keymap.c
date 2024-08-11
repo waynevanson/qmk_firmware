@@ -24,9 +24,9 @@ enum charybdis_keymap_layers {
     BASE = 0,
     NMSY,
     FUNC,
-    LAYER_POINTER,
     MEDIA,
-    NAV
+    NAV,
+    LAYER_POINTER
 };
 
 const custom_shift_key_t custom_shift_keys[] = {
@@ -206,8 +206,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KC_NO,
     KC_HOME,
-    KC_PGUP,
     KC_PGDN,
+    KC_PGUP,
     KC_END,
     KC_NO,
 
@@ -218,10 +218,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
 
-    KC_NO,
+    KC_CAPS,
     KC_LEFT,
-    KC_UP,
     KC_DOWN,
+    KC_UP,
     KC_RIGHT,
     KC_NO,
 
@@ -234,8 +234,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KC_NO,
     KC_MEDIA_PREV_TRACK,
-    KC_AUDIO_VOL_UP,
     KC_AUDIO_VOL_DOWN,
+    KC_AUDIO_VOL_UP,
     KC_MEDIA_NEXT_TRACK,
     KC_NO,
 
