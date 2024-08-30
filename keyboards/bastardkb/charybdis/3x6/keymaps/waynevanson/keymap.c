@@ -29,12 +29,17 @@ enum charybdis_keymap_layers {
     LAYER_POINTER
 };
 
+enum custom_keycodes {
+  KC_DOT_PIPE = SAFE_RANGE
+};
+
 const custom_shift_key_t custom_shift_keys[] = {
   {KC_QUESTION, KC_EXCLAIM}, // Shift ? is !
   {KC_COMM, KC_SCLN}, // Shift , is ;
   {KC_DOT,  KC_COLN}, // Shift . is :   
   {KC_SLSH, KC_BSLS}, // Shift / is "\"
   {KC_BSPC, KC_DEL}, // Shift backspace is delete
+  {KC_DOT_PIPE, KC_PIPE}
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -73,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_Q,  
 
        KC_NO,
-       KC_G,
+       LT(LAYER_POINTER, KC_G),
        KC_X,
        KC_J,
        KC_K,
@@ -81,9 +86,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
        KC_QUESTION,
        KC_R,
-       LT(LAYER_POINTER, KC_M),
+       KC_M,
        KC_F,
-       KC_P,
+       LT(LAYER_POINTER, KC_P),
        KC_NO,
 
        KC_ESC,
@@ -137,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,
         KC_NO,
 
-        KC_DOT,
+        KC_DOT_PIPE,
         KC_0,
         KC_MINS,
 
@@ -296,12 +301,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KC_NO,
     KC_NO
+  ),
+
+  [LAYER_POINTER] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DPI_MOD, S_D_MOD,    S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       XXXXXXX, _______, DRGSCRL, SNIPING, EE_CLR,  QK_BOOT,    QK_BOOT, EE_CLR,  SNIPING, DRGSCRL, _______, XXXXXXX,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                  KC_BTN2, KC_BTN1, KC_BTN3,    KC_NO, KC_NO
+  //                            ╰───────────────────────────╯ ╰──────────────────╯
   )
 };
 // clang-format on
 
+// todo: add  `>` and `<`
+void process_custom_keys(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case KC_DOT_PIPE:
+      if (record->event.pressed) {
+        register_code(KC_DOT);
+      } else {
+        unregister_code(KC_DOT);
+      }
+    default:
+  };
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_custom_shift_keys(keycode, record)) { return false; }
+
+  process_custom_keys(keycode, record);
+
 
   return true;
 }
