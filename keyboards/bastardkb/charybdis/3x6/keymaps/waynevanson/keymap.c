@@ -21,8 +21,21 @@
 
 // https://github.com/manna-harbour/miryoku/tree/master/docs/reference
 enum charybdis_keymap_layers {
+    // bByYoOuUzZ QqLlDdWwVv
+    // cCiIeEaA,; :.HhTtSsNn 
+    // gGxXjJkK'" !?RrMmFfPp
     BASE = 0,
+    // Shift is F keys
+    // 12778899?? 
+    // 11445566
+    // 10112233
     NMSY,
+    // What do I use the most?+=-&*()|`[]{}<>
+    // ??(<)>?^
+    // &|{[}]??
+    // ??[/]\??
+    //   ????-_
+    
     FUNC,
     MEDIA,
     NAV,
@@ -38,16 +51,35 @@ const custom_shift_key_t custom_shift_keys[] = {
   {KC_COMM, KC_SCLN}, // Shift , is ;
   {KC_DOT,  KC_COLN}, // Shift . is :   
   {KC_SLSH, KC_BSLS}, // Shift / is "\"
-  {KC_BSPC, KC_DEL}, // Shift backspace is delete
-  {KC_DOT_PIPE, KC_PIPE}
+  {LT(NMSY, KC_BSPC), KC_DELETE} // Shift Backspace is Delete
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
     sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
+// Symbols = 32
+// `~!@#$%^&*()-_=+[{]}\|;:'",<.>/?
+// Already used = 8  
+// .,:;'"?!
+// Remaining = 24
+//
+// 5 x 3 = 15
+// Nums Layer consumed = 11 
+// 1234567890.
+// Available 4 + 15 = 19
+// Looks like I need more than the number layout for this.
+
+// @#$%^&*()+=-_[{}]\/|<>`~ = 24
+// 3 + 3 + 2 = 8
+// 8 + 15 = 
+// MISSING ONE SPOT BECAUSE OF 0
+
+// ALternatively, I could put the function keys with the number layer on shift
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Engram layout (mostly) for letters (https://engram.dev/)
+
   [BASE] = LAYOUT(
        KC_NO,
        KC_B,
