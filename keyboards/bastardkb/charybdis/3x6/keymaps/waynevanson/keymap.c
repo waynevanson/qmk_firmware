@@ -31,14 +31,15 @@ enum charybdis_keymap_layers {
 enum custom_keycodes {
   KC_10 = SAFE_RANGE,
   KC_11,
-  KC_12
+  KC_12,
+  KC_DOT_COMMA,
 };
 
 const custom_shift_key_t custom_shift_keys[] = {
   // BASE
   {KC_QUESTION, KC_EXCLAIM}, //  ? -> !
   {KC_COMM, KC_SCLN}, // , -> ;
-  {KC_KP_DOT,  KC_COLN}, // . -> :   
+  {KC_DOT_COMMA,  KC_COLN}, // . -> :   
   {LT(LAYER_NUMBER_FUNCTION, KC_BSPC), KC_DELETE}, // Backspace -> Delete
 
   // NUM_FUN layer
@@ -100,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_W,
     KC_V,
 
-    KC_KP_DOT,
+    KC_DOT_COMMA,
     RSFT_T(KC_H),
     RCTL_T(KC_T),
     RALT_T(KC_S),
@@ -299,13 +300,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 void process_custom_keys(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case KC_DOT_COMMA:
+      if (record->event.pressed) {
+        register_code(KC_DOT);
+      } else {
+        unregister_code(KC_DOT);
+      }
+    default:
+  };
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_custom_shift_keys(keycode, record)) { return false; }
 
   process_custom_keys(keycode, record);
-
 
   return true;
 }
