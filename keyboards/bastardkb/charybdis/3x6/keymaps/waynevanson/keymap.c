@@ -104,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F,
     KC_P,
 
-    KC_ENTER,
+    LT(LAYER_SYMBOLS, KC_ENTER),
     LT(LAYER_NUMBER_FUNCTION, KC_BACKSPACE)
   ),
   
@@ -130,6 +130,51 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_DOT,
     KC_0,
     KC_MINUS,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO
+  ),
+
+  [LAYER_SYMBOLS] = LAYOUT_SPLIT(
+    KC_SLASH,
+    KC_EQUAL,
+    KC_RIGHT_ANGLE_BRACKET,
+    KC_LEFT_ANGLE_BRACKET,
+    KC_NO,
+
+    KC_LEFT_PAREN,
+    KC_RIGHT_PAREN,
+    KC_LEFT_CURLY_BRACE,
+    KC_RIGHT_CURLY_BRACE,
+    KC_PLUS,
+
+    KC_GRAVE,
+    KC_AMPERSAND,
+    KC_PIPE,
+    KC_ASTERISK,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
 
     KC_NO,
     KC_NO,
