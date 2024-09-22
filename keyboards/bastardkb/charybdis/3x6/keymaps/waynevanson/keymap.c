@@ -78,10 +78,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_U,
     KC_Z,
 
-    LGUI(KC_C),
-    LALT(KC_I),
-    LCTL(KC_E),
-    LSFT(KC_A),
+    LGUI_T(KC_C),
+    LALT_T(KC_I),
+    LCTL_T(KC_E),
+    LSFT_T(KC_A),
     KC_COMM,
 
     KC_G,
@@ -101,10 +101,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_V,
 
     KC_KP_DOT,
-    RSFT(KC_H),
-    RCTL(KC_T),
-    RALT(KC_S),
-    RGUI(KC_N),
+    RSFT_T(KC_H),
+    RCTL_T(KC_T),
+    RALT_T(KC_S),
+    RGUI_T(KC_N),
 
     KC_QUESTION,
     KC_R,
@@ -146,10 +146,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
 
     KC_NO,
-    RSFT(KC_NO),
-    RCTL(KC_NO),
-    RALT(KC_NO),
-    RGUI(KC_NO),
+    RSFT_T(KC_NO),
+    RCTL_T(KC_NO),
+    RALT_T(KC_NO),
+    RGUI_T(KC_NO),
 
     KC_NO,
     KC_NO,
@@ -191,10 +191,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
 
     KC_NO,
-    LGUI(KC_NO),
-    LALT(KC_NO),
-    LCTL(KC_NO),
-    LSFT(KC_NO),
+    LGUI_T(KC_NO),
+    LALT_T(KC_NO),
+    LCTL_T(KC_NO),
+    LSFT_T(KC_NO),
 
     KC_NO,
     KC_NO,
@@ -213,10 +213,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
 
-    LGUI(KC_NO),
-    LALT(KC_NO),
-    LCTL(KC_NO),
-    LSFT(KC_NO),
+    LGUI_T(KC_NO),
+    LALT_T(KC_NO),
+    LCTL_T(KC_NO),
+    LSFT_T(KC_NO),
     KC_NO,
 
     KC_NO,
@@ -258,10 +258,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
 
-    LSFT(KC_NO),
-    LCTL(KC_NO),
-    LALT(KC_NO),
-    LGUI(KC_NO),
+    LSFT_T(KC_NO),
+    LCTL_T(KC_NO),
+    LALT_T(KC_NO),
+    LGUI_T(KC_NO),
     KC_NO,
 
     KC_NO,
