@@ -78,10 +78,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_U,
     KC_Z,
 
-    KC_C,
-    KC_I,
-    KC_E,
-    KC_A,
+    LGUI(KC_C),
+    LALT(KC_I),
+    LCTL(KC_E),
+    LSFT(KC_A),
     KC_COMM,
 
     KC_G,
@@ -101,10 +101,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_V,
 
     KC_KP_DOT,
-    KC_H,
-    KC_T,
-    KC_S,
-    KC_N,
+    RSFT(KC_H),
+    RCTL(KC_T),
+    RALT(KC_S),
+    RGUI(KC_N),
 
     KC_QUESTION,
     KC_R,
@@ -146,10 +146,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
 
     KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
+    RSFT(KC_NO),
+    RCTL(KC_NO),
+    RALT(KC_NO),
+    RGUI(KC_NO),
 
     KC_NO,
     KC_NO,
@@ -191,10 +191,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
 
     KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
+    LGUI(KC_NO),
+    LALT(KC_NO),
+    LCTL(KC_NO),
+    LSFT(KC_NO),
 
     KC_NO,
     KC_NO,
@@ -213,20 +213,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
 
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-
-    KC_NO,
-    KC_NO,
+    LGUI(KC_NO),
+    LALT(KC_NO),
+    LCTL(KC_NO),
+    LSFT(KC_NO),
     KC_NO,
 
     KC_NO,
@@ -238,13 +228,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
     KC_NO,
-    KC_NO,
-    KC_NO,
 
     KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
+    KC_HOME,
+    KC_PGDN,
+    KC_PGUP,
+    KC_END,
+
+    KC_CAPS,
+    KC_LEFT,
+    KC_DOWN,
+    KC_UP,
+    KC_RIGHT,
+
+    KC_MS_L,
+    KC_MS_D,
+    KC_MS_U,
+    KC_MS_R,
     KC_NO,
 
     KC_NO,
@@ -258,20 +258,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
 
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-
-    KC_NO,
-    KC_NO,
+    LSFT(KC_NO),
+    LCTL(KC_NO),
+    LALT(KC_NO),
+    LGUI(KC_NO),
     KC_NO,
 
     KC_NO,
@@ -283,14 +273,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
     KC_NO,
-    KC_NO,
-    KC_NO,
 
     KC_NO,
     KC_NO,
+    KC_MEDIA_PLAY_PAUSE,
+    KC_AUDIO_MUTE,
     KC_NO,
+
     KC_NO,
+    KC_BTN2,
+    KC_BTN1,
+    KC_BTN3,
     KC_NO,
+
+    KC_NO,
+    KC_MEDIA_PREV_TRACK,
+    KC_AUDIO_VOL_DOWN,
+    KC_AUDIO_VOL_UP,
+    KC_MEDIA_PREV_TRACK,
 
     KC_NO,
     KC_NO
