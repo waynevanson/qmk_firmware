@@ -272,7 +272,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KC_NO,
     KC_NO,
-    KC_NO,
+    KC_NO,t
 
     KC_NO,
     KC_NO,
@@ -290,7 +290,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_MEDIA_PREV_TRACK,
     KC_AUDIO_VOL_DOWN,
     KC_AUDIO_VOL_UP,
-    KC_MEDIA_PREV_TRACK,
+    KC_MEDIA_NEXT_TRACK,
 
     KC_NO,
     KC_NO
