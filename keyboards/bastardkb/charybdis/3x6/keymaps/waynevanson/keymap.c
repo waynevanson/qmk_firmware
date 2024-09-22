@@ -70,42 +70,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_U,
     KC_Z,
 
+    KC_C,
+    KC_I,
+    KC_E,
+    KC_A,
+    KC_COMM,
+
+    KC_G,
+    KC_X,
+    KC_J,
+    KC_K,
+    KC_QUOTE,
+
+    KC_ESC,
+    KC_SPACE,
+    KC_TAB,
+
     KC_Q,
+    KC_L,
+    KC_D,
+    KC_W,
+    KC_V,
+
+    KC_DOT,
+    KC_H,
+    KC_T,
+    KC_S,
     KC_N,
-    KC_NO,
-    KC_NO,
-    KC_NO,
 
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
+    KC_QUESTION,
+    KC_R,
+    KC_M,
+    KC_F,
+    KC_P,
 
-    KC_NO,
-    KC_NO,
-    KC_NO,
-
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-    KC_NO,
-
-    KC_NO,
-    KC_NO
+    KC_ENTER,
+    KC_BACKSPACE
   )
 };
 // clang-format on
