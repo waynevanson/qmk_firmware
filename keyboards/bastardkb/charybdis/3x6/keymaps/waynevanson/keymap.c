@@ -37,7 +37,7 @@ const custom_shift_key_t custom_shift_keys[] = {
   // BASE
   {KC_QUESTION, KC_EXCLAIM}, //  ? -> !
   {KC_COMM, KC_SCLN}, // , -> ;
-  {KC_DOT,  KC_COLN}, // . -> :   
+  {KC_KP_DOT,  KC_COLN}, // . -> :   
   {LT(LAYER_NUMBER_FUNCTION, KC_BSPC), KC_DELETE}, // Backspace -> Delete
 
   // NUM_FUN layer
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_W,
     KC_V,
 
-    KC_DOT,
+    KC_KP_DOT,
     KC_H,
     KC_T,
     KC_S,
@@ -105,7 +105,52 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_P,
 
     KC_ENTER,
-    KC_BACKSPACE
+    LT(LAYER_NUMBER_FUNCTION, KC_BACKSPACE)
+  ),
+  
+  [LAYER_NUMBER_FUNCTION] = LAYOUT_SPLIT(
+    KC_12,
+    KC_7,
+    KC_8,
+    KC_9,
+    KC_NO,
+
+    KC_11,
+    KC_4,
+    KC_5,
+    KC_6,
+    KC_NO,
+
+    KC_10,
+    KC_3,
+    KC_2,
+    KC_1,
+    KC_NO,
+
+    KC_DOT,
+    KC_0,
+    KC_MINUS,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
   )
 };
 // clang-format on
