@@ -24,6 +24,7 @@ enum charybdis_keymap_layers {
   LAYER_BASE = 0,
   LAYER_NUMBER_FUNCTION,
   LAYER_SYMBOLS,
+  LAYER_NAVIGATION,
   LAYER_POINTER,
 };
 
@@ -54,7 +55,14 @@ const custom_shift_key_t custom_shift_keys[] = {
   {KC_11, KC_F11},
   {KC_12, KC_F12},
 
-  {KC_SLSH, KC_BSLS}, // Shift / is "\"
+  {KC_SLSH, KC_BSLS}, // / -> "\"
+
+  {KC_EQUAL, KC_PERCENT}, // = -> %
+  {KC_LEFT_CURLY_BRACE, KC_LEFT_BRACKET}, // { -> [
+  {KC_RIGHT_CURLY_BRACE, KC_RIGHT_BRACKET}, // } -> ]
+  {KC_PLUS, KC_MINUS}, // + -> -
+  {KC_PIPE, KC_AT}, // | -> @
+  {KC_ASTERISK, KC_HASH}, // * -> #
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -83,8 +91,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_QUOTE,
 
     KC_ESC,
-    KC_SPACE,
-    KC_TAB,
+    LT(LAYER_NAVIGATION, KC_SPACE),
+    LT(LAYER_POINTER, KC_TAB),
 
     KC_Q,
     KC_L,
@@ -170,6 +178,96 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_AMPERSAND,
     KC_PIPE,
     KC_ASTERISK,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO
+  ),
+
+  [LAYER_NAVIGATION] = LAYOUT_SPLIT(
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO
+  ),
+
+  [LAYER_POINTER] = LAYOUT_SPLIT(
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
     KC_NO,
 
     KC_NO,
