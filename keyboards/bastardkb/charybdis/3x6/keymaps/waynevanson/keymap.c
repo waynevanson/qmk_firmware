@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LSFT_T(KC_A),
     KC_COMM,
 
-    KC_G,
+    LT(LAYER_POINTER, KC_G),
     KC_X,
     KC_J,
     KC_K,
@@ -259,9 +259,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
 
-    LGUI_T(KC_BTN3),
-    LALT_T(KC_BTN2),
-    LCTL_T(KC_BTN1),
+    LGUI_T(KC_NO),
+    LALT_T(KC_NO),
+    LCTL_T(KC_NO),
     LSFT_T(KC_NO),
     KC_NO,
 
@@ -271,9 +271,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
 
-    KC_NO,
-    KC_NO,
-    KC_NO,
+    KC_BTN2,
+    KC_BTN1,
+    KC_BTN3,
 
     KC_NO,
     KC_NO,
@@ -282,9 +282,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
 
     KC_NO,
-    RSFT_T(KC_BTN1),
-    RCTL_T(KC_BTN2),
-    RALT_T(KC_BTN3),
+    RSFT_T(KC_NO),
+    RCTL_T(KC_NO),
+    RALT_T(KC_NO),
     RGUI_T(KC_NO),
 
     KC_NO,
