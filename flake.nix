@@ -9,8 +9,8 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
-      # Change to "bastardkb/charybdis/3x6/blackpill" if you use a Blackpill.
-      keyboard = "bastardkb/charybdis/3x6/elitec";
+      # Splinktegrated 1.4 board (half-duplex serial). Use splinktegrated_rev3 for 3.x boards.
+      keyboard = "bastardkb/charybdis/3x6/splinktegrated_rev1";
       keymap = "waynevanson";
 
       # qmk's propagated inputs contain make, avr-gcc, dfu-programmer, etc.

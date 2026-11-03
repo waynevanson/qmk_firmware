@@ -14,12 +14,22 @@ Assuming you're running Nix and don't have .direnv installed, jump into the shel
 nix develop
 ```
 
+Check if it even compiles
+
+```sh
+nix run .#compile
+```
+
 Now repeat this for each half of the keyboard
 
 ```sh
-qmk flash -kb bastardkb/charybdis/3x6/v2/splinky_v3 -km waynevanson
+nix run .#flash
+```
+
 # Plug in the keyboard via usb-c
+
 # and double tap reset button
+
 ```
 
 # Quantum Mechanical Keyboard Firmware
@@ -58,3 +68,4 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 ## Official Website
 
 [qmk.fm](https://qmk.fm) is the official website of QMK, where you can find links to this page, the documentation, and the keyboards supported by QMK.
+```
