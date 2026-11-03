@@ -71,10 +71,11 @@ const custom_shift_key_t custom_shift_keys[] = {
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
     sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
-
+ 
+// todo: What about those sexy mouse modes?
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  // Engram layout (mostly) for letters (https://engram.dev/)
+  // Engram layout (mostly) for letters https://engram-layouts.xyz/engram-en/
   // The outer column of the 3x6 PCB is not populated: KC_NO on matrix col 0.
   [LAYER_BASE] = LAYOUT(
     KC_NO,
