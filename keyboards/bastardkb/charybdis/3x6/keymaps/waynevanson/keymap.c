@@ -14,6 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * We are using Engram key layout with Miryoku layers. 
  */
 #include QMK_KEYBOARD_H
 #include "version.h"
@@ -69,6 +71,7 @@ const custom_shift_key_t custom_shift_keys[] = {
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
     sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Engram layout (mostly) for letters (https://engram.dev/)
@@ -99,6 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RGUI_T(KC_N),
     KC_NO,
     KC_NO,
+    // todo: wtf?
     LT(LAYER_POINTER, KC_G),
     KC_X,
     KC_J,
@@ -110,6 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F,
     KC_P,
     KC_NO,
+    // todo: make this number layer
     KC_ESC,
     LT(LAYER_NAVIGATION, KC_SPACE),
     LT(LAYER_POINTER, KC_TAB),
@@ -117,6 +122,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LT(LAYER_NUMBER_FUNCTION, KC_BACKSPACE)
   ),
   
+  // Enter by holding backspace (right hand, thumb right) 
+  //
+  // todo: put the numbers on the right keyboard; Why they on left?
+  // Probably because navigation is there.   
   [LAYER_NUMBER_FUNCTION] = LAYOUT(
     KC_NO,
     KC_12,
