@@ -20,6 +20,7 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "features/custom_shift_keys.h"
+#include "features/home_row_mods/home_row_mods.h"
 
 // https://github.com/manna-harbour/miryoku/tree/master/docs/reference
 enum charybdis_keymap_layers {
@@ -71,21 +72,30 @@ const custom_shift_key_t custom_shift_keys[] = {
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
     sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
- 
-// LAYOUT wrapper that embeds the home-row mods. Each layer only supplies the
-// base keycodes; the GUI/ALT/CTL/SFT (and mirrored SFT/CTL/ALT/GUI) taps are
-// added here so they stay consistent across every layer.
-#define LAYOUT_WAYNEVANSON( \
-    r0c0, r0c1, r0c2, r0c3, r0c4, r0c5, r0c6, r0c7, r0c8, r0c9, r0ca, r0cb, \
-    r1c0, r1c1, r1c2, r1c3, r1c4, r1c5, r1c6, r1c7, r1c8, r1c9, r1ca, r1cb, \
-    r2c0, r2c1, r2c2, r2c3, r2c4, r2c5, r2c6, r2c7, r2c8, r2c9, r2ca, r2cb, \
-    r3c0, r3c1, r3c2, r3c3, r3c4) \
-    LAYOUT( \
-        r0c0, r0c1, r0c2, r0c3, r0c4, r0c5, r0c6, r0c7, r0c8, r0c9, r0ca, r0cb, \
-        r1c0, LGUI_T(r1c1), LALT_T(r1c2), LCTL_T(r1c3), LSFT_T(r1c4), r1c5, \
-        r1c6, RSFT_T(r1c7), RCTL_T(r1c8), RALT_T(r1c9), RGUI_T(r1ca), r1cb, \
-        r2c0, r2c1, r2c2, r2c3, r2c4, r2c5, r2c6, r2c7, r2c8, r2c9, r2ca, r2cb, \
-        r3c0, r3c1, r3c2, r3c3, r3c4)
+// Home-row mods are injected by keymap_key_to_keycode() below. Positions are
+// matrix coordinates from info.json, so the keymaps can stay as plain
+// LAYOUT(...).
+const home_row_mod_t home_row_mods[] = {
+  // Left hand: GUI, ALT, CTL, SFT
+  {HMR_ALL_LAYERS, HMR_POS(1, 1), MOD_LGUI},
+  {HMR_ALL_LAYERS, HMR_POS(1, 2), MOD_LALT},
+  {HMR_ALL_LAYERS, HMR_POS(1, 3), MOD_LCTL},
+  {HMR_ALL_LAYERS, HMR_POS(1, 4), MOD_LSFT},
+  // Right hand: SFT, CTL, ALT, GUI
+  {HMR_ALL_LAYERS, HMR_POS(5, 4), MOD_RSFT},
+  {HMR_ALL_LAYERS, HMR_POS(5, 3), MOD_RCTL},
+  {HMR_ALL_LAYERS, HMR_POS(5, 2), MOD_RALT},
+  {HMR_ALL_LAYERS, HMR_POS(5, 1), MOD_RGUI},
+};
+
+const uint8_t home_row_mods_count =
+    sizeof(home_row_mods) / sizeof(home_row_mod_t);
+
+// The keymap owns the QMK hook, so other features can compose with it, e.g.
+// return other_feature(layer, key, home_row_mods_keycode(layer, key));
+uint16_t keymap_key_to_keycode(uint8_t layer, keypos_t key) {
+    return home_row_mods_keycode(layer, key);
+}
 
 // todo: What about those sexy mouse modes?
 // todo: What about SHIFT + ESCAPE = CAPSLOCK?
@@ -93,7 +103,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS =
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Engram layout (mostly) for letters https://engram-layouts.xyz/engram-en/
   // The outer column of the 3x6 PCB is not populated: KC_NO on matrix col 0.
-  [LAYER_BASE] = LAYOUT_WAYNEVANSON(
+  [LAYER_BASE] = LAYOUT(
     KC_NO,
     KC_B,
     KC_Y,
@@ -142,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //
   // todo: put the numbers on the right keyboard; Why they on left?
   // Probably because navigation is there.   
-  [LAYER_NUMBER_FUNCTION] = LAYOUT_WAYNEVANSON(
+  [LAYER_NUMBER_FUNCTION] = LAYOUT(
     KC_NO,
     KC_NO,
     KC_NO,
@@ -186,7 +196,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_0
   ),
 
-  [LAYER_SYMBOLS] = LAYOUT_WAYNEVANSON(
+  [LAYER_SYMBOLS] = LAYOUT(
     KC_NO,
     KC_SLASH,
     KC_EQUAL,
@@ -230,7 +240,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO
   ),
 
-  [LAYER_NAVIGATION] = LAYOUT_WAYNEVANSON(
+  [LAYER_NAVIGATION] = LAYOUT(
     KC_NO,
     KC_NO,
     KC_NO,
@@ -274,7 +284,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO
   ),
 
-  [LAYER_POINTER] = LAYOUT_WAYNEVANSON(
+  [LAYER_POINTER] = LAYOUT(
     KC_NO,
     KC_NO,
     KC_NO,
