@@ -72,13 +72,28 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS =
     sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
  
+// LAYOUT wrapper that embeds the home-row mods. Each layer only supplies the
+// base keycodes; the GUI/ALT/CTL/SFT (and mirrored SFT/CTL/ALT/GUI) taps are
+// added here so they stay consistent across every layer.
+#define LAYOUT_WAYNEVANSON( \
+    r0c0, r0c1, r0c2, r0c3, r0c4, r0c5, r0c6, r0c7, r0c8, r0c9, r0ca, r0cb, \
+    r1c0, r1c1, r1c2, r1c3, r1c4, r1c5, r1c6, r1c7, r1c8, r1c9, r1ca, r1cb, \
+    r2c0, r2c1, r2c2, r2c3, r2c4, r2c5, r2c6, r2c7, r2c8, r2c9, r2ca, r2cb, \
+    r3c0, r3c1, r3c2, r3c3, r3c4) \
+    LAYOUT( \
+        r0c0, r0c1, r0c2, r0c3, r0c4, r0c5, r0c6, r0c7, r0c8, r0c9, r0ca, r0cb, \
+        r1c0, LGUI_T(r1c1), LALT_T(r1c2), LCTL_T(r1c3), LSFT_T(r1c4), r1c5, \
+        r1c6, RSFT_T(r1c7), RCTL_T(r1c8), RALT_T(r1c9), RGUI_T(r1ca), r1cb, \
+        r2c0, r2c1, r2c2, r2c3, r2c4, r2c5, r2c6, r2c7, r2c8, r2c9, r2ca, r2cb, \
+        r3c0, r3c1, r3c2, r3c3, r3c4)
+
 // todo: What about those sexy mouse modes?
 // todo: What about SHIFT + ESCAPE = CAPSLOCK?
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Engram layout (mostly) for letters https://engram-layouts.xyz/engram-en/
   // The outer column of the 3x6 PCB is not populated: KC_NO on matrix col 0.
-  [LAYER_BASE] = LAYOUT(
+  [LAYER_BASE] = LAYOUT_WAYNEVANSON(
     KC_NO,
     KC_B,
     KC_Y,
@@ -93,16 +108,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_V,
     KC_NO,
     KC_NO,
-    LGUI_T(KC_H),
-    LALT_T(KC_I),
-    LCTL_T(KC_A),
-    LSFT_T(KC_E),
+    KC_H,
+    KC_I,
+    KC_A,
+    KC_E,
     KC_COMM,
     KC_DOT_COMMA,
-    RSFT_T(KC_T),
-    RCTL_T(KC_R),
-    RALT_T(KC_S),
-    RGUI_T(KC_C),
+    KC_T,
+    KC_R,
+    KC_S,
+    KC_C,
     KC_NO,
     KC_NO,
     KC_K,
@@ -127,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //
   // todo: put the numbers on the right keyboard; Why they on left?
   // Probably because navigation is there.   
-  [LAYER_NUMBER_FUNCTION] = LAYOUT(
+  [LAYER_NUMBER_FUNCTION] = LAYOUT_WAYNEVANSON(
     KC_NO,
     KC_NO,
     KC_NO,
@@ -141,16 +156,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_10,
     KC_NO,
     KC_NO,
-    LGUI_T(KC_NO),
-    LALT_T(KC_NO),
-    LCTL_T(KC_NO),
-    LSFT_T(KC_NO),
     KC_NO,
     KC_NO,
-    RSFT_T(KC_4),
-    RCTL_T(KC_5),
-    RALT_T(KC_6),
-    RGUI_T(KC_11),
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_4,
+    KC_5,
+    KC_6,
+    KC_11,
     KC_NO,
     KC_NO,
     KC_NO,
@@ -171,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_0
   ),
 
-  [LAYER_SYMBOLS] = LAYOUT(
+  [LAYER_SYMBOLS] = LAYOUT_WAYNEVANSON(
     KC_NO,
     KC_SLASH,
     KC_EQUAL,
@@ -185,16 +200,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
     KC_NO,
-    LGUI_T(KC_LEFT_PAREN),
-    LALT_T(KC_RIGHT_PAREN),
-    LCTL_T(KC_LEFT_CURLY_BRACE),
-    LSFT_T(KC_RIGHT_CURLY_BRACE),
+    KC_LEFT_PAREN,
+    KC_RIGHT_PAREN,
+    KC_LEFT_CURLY_BRACE,
+    KC_RIGHT_CURLY_BRACE,
     KC_PLUS,
     KC_NO,
-    RSFT_T(KC_NO),
-    RCTL_T(KC_NO),
-    RALT_T(KC_NO),
-    RGUI_T(KC_NO),
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
     KC_NO,
     KC_NO,
     KC_GRAVE,
@@ -215,7 +230,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO
   ),
 
-  [LAYER_NAVIGATION] = LAYOUT(
+  [LAYER_NAVIGATION] = LAYOUT_WAYNEVANSON(
     KC_NO,
     KC_NO,
     KC_NO,
@@ -229,16 +244,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_END,
     KC_NO,
     KC_NO,
-    LGUI_T(KC_NO),
-    LALT_T(KC_NO),
-    LCTL_T(KC_NO),
-    LSFT_T(KC_NO),
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
     KC_NO,
     KC_CAPS,
-    RSFT_T(KC_LEFT),
-    RCTL_T(KC_DOWN),
-    RALT_T(KC_UP),
-    RGUI_T(KC_RIGHT),
+    KC_LEFT,
+    KC_DOWN,
+    KC_UP,
+    KC_RIGHT,
     KC_NO,
     KC_NO,
     KC_NO,
@@ -259,7 +274,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO
   ),
 
-  [LAYER_POINTER] = LAYOUT(
+  [LAYER_POINTER] = LAYOUT_WAYNEVANSON(
     KC_NO,
     KC_NO,
     KC_NO,
@@ -273,16 +288,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
     KC_NO,
-    LGUI_T(KC_NO),
-    LALT_T(KC_NO),
-    LCTL_T(KC_NO),
-    LSFT_T(KC_NO),
     KC_NO,
     KC_NO,
-    RSFT_T(KC_NO),
-    RCTL_T(KC_NO),
-    RALT_T(KC_NO),
-    RGUI_T(KC_NO),
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
+    KC_NO,
     KC_NO,
     KC_NO,
     KC_NO,
