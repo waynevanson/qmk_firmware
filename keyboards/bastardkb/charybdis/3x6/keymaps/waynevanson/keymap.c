@@ -36,6 +36,9 @@ enum custom_keycodes {
   KC_11,
   KC_12,
   KC_DOT_COMMA,
+  // Step the sniping DPI while the mouse layer is held.
+  SNIPE_DPI_DOWN,
+  SNIPE_DPI_UP,
 };
 
 const custom_shift_key_t custom_shift_keys[] = {
@@ -46,7 +49,7 @@ const custom_shift_key_t custom_shift_keys[] = {
   {KC_COMM, KC_SCLN}, // , -> ;
   {KC_DOT_COMMA,  KC_COLN}, // . -> :   
   {KC_MINS, KC_UNDS}, // - -> _
-  {LT(LAYER_NUMBER_FUNCTION, KC_BSPC), KC_DELETE}, // Backspace -> Delete
+  {KC_BSPC, KC_DELETE}, // Backspace -> Delete
   {LT(LAYER_NUMBER_FUNCTION, KC_ESC), KC_CAPS_LOCK}, // Esc -> Caps Lock
 
   // NUM_FUN layer
@@ -132,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_C,
     KC_Z,
     KC_NO,
-    KC_K,
+    LT(LAYER_POINTER, KC_K),
     KC_J,
     KC_X,
     KC_W,
@@ -141,11 +144,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_M,
     KC_L,
     KC_F,
-    KC_P,
+    LT(LAYER_POINTER, KC_P),
     KC_NO,
     LT(LAYER_NUMBER_FUNCTION, KC_ESC),
     LT(LAYER_NAVIGATION, KC_SPACE),
-    LT(LAYER_POINTER, KC_TAB),
+    KC_TAB,
     LT(LAYER_SYMBOLS, KC_ENTER),
     KC_BACKSPACE
   ),
@@ -286,6 +289,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO
   ),
 
+  // Mouse layer: hold either pinky key (K / P) and the left thumb keys become
+  // mouse buttons. Pressing the *other* pinky key while one is held steps the
+  // sniping DPI. Releasing both ends the sniping session.
   [LAYER_POINTER] = LAYOUT(
     KC_NO,
     KC_NO,
@@ -312,7 +318,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,
     KC_NO,
     KC_NO,
-    KC_NO,
+    SNIPE_DPI_DOWN,
     KC_NO,
     KC_NO,
     KC_NO,
@@ -321,8 +327,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_MEDIA_PREV_TRACK,
     KC_AUDIO_VOL_DOWN,
     KC_AUDIO_VOL_UP,
+    SNIPE_DPI_UP,
     KC_MEDIA_NEXT_TRACK,
-    KC_NO,
     MS_BTN2,
     MS_BTN1,
     MS_BTN3,
@@ -340,6 +346,17 @@ void process_custom_keys(uint16_t keycode, keyrecord_t* record) {
       } else {
         unregister_code(KC_DOT);
       }
+      return;
+    case SNIPE_DPI_DOWN:
+      if (record->event.pressed) {
+        charybdis_cycle_pointer_sniping_dpi_noeeprom(/* forward= */ false);
+      }
+      return;
+    case SNIPE_DPI_UP:
+      if (record->event.pressed) {
+        charybdis_cycle_pointer_sniping_dpi_noeeprom(/* forward= */ true);
+      }
+      return;
     default:
   };
 }
@@ -395,9 +412,36 @@ void matrix_scan_user(void) {
 #    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
+/** \brief Sniping DPI as configured at boot, restored when sniping stops. */
+static uint16_t sniping_dpi_default = 0;
+
+/** \brief Step the sniping DPI back to the value it had at boot. */
+static void reset_sniping_dpi(void) {
+    // The firmware exposes no setter, so step backwards instead. There are only
+    // 4 sniping DPI values, so at most 4 steps are ever needed.
+    for (uint8_t i = 0; i < 4 && charybdis_get_pointer_sniping_dpi() != sniping_dpi_default; ++i) {
+        charybdis_cycle_pointer_sniping_dpi_noeeprom(/* forward= */ false);
+    }
+}
+
 layer_state_t layer_state_set_user(layer_state_t state) {
-    charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
+    static bool was_sniping = false;
+    const bool sniping = layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER);
+
+    charybdis_set_pointer_sniping_enabled(sniping);
+
+    // Leaving the mouse layer turns sniping off and forgets any sniping DPI
+    // adjustment made while it was held.
+    if (was_sniping && !sniping) {
+        reset_sniping_dpi();
+    }
+    was_sniping = sniping;
+
     return state;
+}
+
+void keyboard_post_init_user(void) {
+    sniping_dpi_default = charybdis_get_pointer_sniping_dpi();
 }
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
 #endif     // POINTING_DEVICE_ENABLE
