@@ -41,8 +41,11 @@ enum custom_keycodes {
 const custom_shift_key_t custom_shift_keys[] = {
   // BASE
   {KC_QUESTION, KC_EXCLAIM}, //  ? -> !
+  {KC_QUOTE, KC_LEFT_PAREN}, // ' -> (
+  {KC_DQUO, KC_RIGHT_PAREN}, // " -> )
   {KC_COMM, KC_SCLN}, // , -> ;
   {KC_DOT_COMMA,  KC_COLN}, // . -> :   
+  {KC_MINS, KC_UNDS}, // - -> _
   {LT(LAYER_NUMBER_FUNCTION, KC_BSPC), KC_DELETE}, // Backspace -> Delete
   {LT(LAYER_NUMBER_FUNCTION, KC_ESC), KC_CAPS_LOCK}, // Esc -> Caps Lock
 
@@ -109,9 +112,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Y,
     KC_O,
     KC_U,
-    // todo: There's gotta be a better spot for unused keys, rather than in a more accesible space?
-    KC_NO,
-    KC_NO,
+    KC_QUOTE,
+    KC_DQUO,
     KC_D,
     KC_N,
     KC_G,
@@ -134,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_J,
     KC_X,
     KC_W,
-    KC_QUOTE,
+    KC_MINS,
     KC_QUESTION,
     KC_M,
     KC_L,
