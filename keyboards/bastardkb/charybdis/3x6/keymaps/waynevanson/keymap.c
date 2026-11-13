@@ -44,6 +44,7 @@ const custom_shift_key_t custom_shift_keys[] = {
   {KC_COMM, KC_SCLN}, // , -> ;
   {KC_DOT_COMMA,  KC_COLN}, // . -> :   
   {LT(LAYER_NUMBER_FUNCTION, KC_BSPC), KC_DELETE}, // Backspace -> Delete
+  {LT(LAYER_NUMBER_FUNCTION, KC_ESC), KC_CAPS_LOCK}, // Esc -> Caps Lock
 
   // NUM_FUN layer
   {KC_1, KC_F1},
@@ -98,7 +99,6 @@ uint16_t keymap_key_to_keycode(uint8_t layer, keypos_t key) {
 }
 
 // todo: What about those sexy mouse modes?
-// todo: What about SHIFT + ESCAPE = CAPSLOCK?
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Engram layout (mostly) for letters https://engram-layouts.xyz/engram-en/
